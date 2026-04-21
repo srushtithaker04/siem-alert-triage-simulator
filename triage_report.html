@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>SIEM Alert Triage Report</title>
+<style>
+  body      { font-family:Arial,sans-serif; margin:0; background:#f0f2f5; color:#2d2d2d; }
+  .header   { background:linear-gradient(135deg,#1a1a2e,#16213e);
+               color:white; padding:36px 40px; }
+  .header h1{ margin:0; font-size:26px; }
+  .header p { margin:6px 0 0; font-size:13px; opacity:0.8; }
+  .container{ max-width:1300px; margin:30px auto; padding:0 20px; }
+  .card     { background:white; border-radius:8px; padding:24px 28px;
+               margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+  .card h2  { margin:0 0 18px; font-size:17px; color:#1a1a2e;
+               border-bottom:2px solid #f0f2f5; padding-bottom:10px; }
+  .stat-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+  .stat     { border-radius:8px; padding:18px; text-align:center; color:white; }
+  .stat .num{ font-size:32px; font-weight:bold; }
+  .stat .lbl{ font-size:12px; margin-top:4px; opacity:0.9; }
+  table     { width:100%; border-collapse:collapse; font-size:12px; }
+  th        { background:#16213e; color:white; padding:10px 12px;
+               text-align:left; font-size:11px; }
+  td        { padding:8px 12px; border-bottom:1px solid #eee; vertical-align:top; }
+  tr:hover  { filter:brightness(0.97); }
+  a         { text-decoration:none; }
+  .warn     { background:#fef9e7; border-left:4px solid #e67e22;
+               padding:12px 16px; border-radius:4px; margin-bottom:16px;
+               font-size:13px; color:#856404; }
+  .footer   { text-align:center; font-size:12px; color:#999;
+               padding:20px 0 30px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>SIEM Alert Triage Report</h1>
+  <p>Generated: 2026-04-20 14:17:55 &nbsp;|&nbsp;
+     Total Alerts: 15 &nbsp;|&nbsp;
+     Critical True Positives: 3</p>
+</div>
+
+<div class="container">
+
+  <!-- SUMMARY -->
+  <div class="card">
+    <h2>Alert Triage Summary</h2>
+    <div class="stat-grid">
+      <div class="stat" style="background:#2c3e50;">
+        <div class="num">15</div>
+        <div class="lbl">Total Alerts</div>
+      </div>
+      <div class="stat" style="background:#c0392b;">
+        <div class="num">5</div>
+        <div class="lbl">True Positives</div>
+      </div>
+      <div class="stat" style="background:#27ae60;">
+        <div class="num">5</div>
+        <div class="lbl">False Positives</div>
+      </div>
+      <div class="stat" style="background:#e67e22;">
+        <div class="num">5</div>
+        <div class="lbl">Needs Review</div>
+      </div>
+      <div class="stat" style="background:#8e44ad;">
+        <div class="num">3</div>
+        <div class="lbl">Coverage Gaps</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP PRIORITY ACTIONS -->
+  <div class="card">
+    <h2>Top Priority Actions — Immediate Response Required</h2>
+    
+        <div style="border-left:5px solid #c0392b;background:#fafafa;
+                    padding:14px 18px;margin-bottom:14px;border-radius:4px;">
+            <div style="font-weight:bold;color:#c0392b;margin-bottom:4px;">
+                #1 [Critical] Malware Communication Detected
+                <span style="float:right;font-size:11px;background:#c0392b;
+                      color:white;padding:2px 8px;border-radius:10px;">P1 - IMMEDIATE</span>
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Alert ID: ALT-007 | Source: 192.168.1.30 |
+                MITRE: T1071 — Application Layer Protocol | Tactic: Command and Control
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Host communicating with known C2 server on suspicious port 4444
+            </div>
+            <div style="font-size:12px;color:#2980b9;">
+                <b>Action:</b> Immediately isolate affected host from network. Block C2 IP at firewall. Begin malware analysis.
+            </div>
+        </div>
+        <div style="border-left:5px solid #c0392b;background:#fafafa;
+                    padding:14px 18px;margin-bottom:14px;border-radius:4px;">
+            <div style="font-weight:bold;color:#c0392b;margin-bottom:4px;">
+                #2 [Critical] Lateral Movement Detected
+                <span style="float:right;font-size:11px;background:#c0392b;
+                      color:white;padding:2px 8px;border-radius:10px;">P1 - IMMEDIATE</span>
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Alert ID: ALT-009 | Source: 192.168.1.15 |
+                MITRE: T1021 — Remote Services | Tactic: Lateral Movement
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Internal host attempting to access multiple systems via SMB â€” possible lateral movement
+            </div>
+            <div style="font-size:12px;color:#2980b9;">
+                <b>Action:</b> Isolate all affected hosts. Reset all credentials. Begin full IR investigation.
+            </div>
+        </div>
+        <div style="border-left:5px solid #c0392b;background:#fafafa;
+                    padding:14px 18px;margin-bottom:14px;border-radius:4px;">
+            <div style="font-weight:bold;color:#c0392b;margin-bottom:4px;">
+                #3 [Critical] Malware Communication Detected
+                <span style="float:right;font-size:11px;background:#c0392b;
+                      color:white;padding:2px 8px;border-radius:10px;">P1 - IMMEDIATE</span>
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Alert ID: ALT-014 | Source: 192.168.1.80 |
+                MITRE: T1071 — Application Layer Protocol | Tactic: Command and Control
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Repeated HTTP beaconing to known malicious IP every 60 seconds â€” C2 pattern
+            </div>
+            <div style="font-size:12px;color:#2980b9;">
+                <b>Action:</b> Immediately isolate affected host from network. Block C2 IP at firewall. Begin malware analysis.
+            </div>
+        </div>
+        <div style="border-left:5px solid #e67e22;background:#fafafa;
+                    padding:14px 18px;margin-bottom:14px;border-radius:4px;">
+            <div style="font-weight:bold;color:#e67e22;margin-bottom:4px;">
+                #4 [High] Suspicious PowerShell Execution
+                <span style="float:right;font-size:11px;background:#e67e22;
+                      color:white;padding:2px 8px;border-radius:10px;">P2 - URGENT</span>
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Alert ID: ALT-011 | Source: 192.168.1.40 |
+                MITRE: T1059.001 — PowerShell | Tactic: Execution
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                PowerShell executed with encoded command â€” possible malware execution
+            </div>
+            <div style="font-size:12px;color:#2980b9;">
+                <b>Action:</b> Isolate host. Collect PowerShell logs. Analyze encoded command. Check for persistence mechanisms.
+            </div>
+        </div>
+        <div style="border-left:5px solid #f39c12;background:#fafafa;
+                    padding:14px 18px;margin-bottom:14px;border-radius:4px;">
+            <div style="font-weight:bold;color:#f39c12;margin-bottom:4px;">
+                #5 [Medium] Admin Login Outside Business Hours
+                <span style="float:right;font-size:11px;background:#f39c12;
+                      color:white;padding:2px 8px;border-radius:10px;">P3 - MODERATE</span>
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Alert ID: ALT-003 | Source: 203.0.113.42 |
+                MITRE: T1078 — Valid Accounts | Tactic: Defense Evasion
+            </div>
+            <div style="font-size:12px;color:#555;margin-bottom:6px;">
+                Administrator account login via RDP at 2AM from external IP
+            </div>
+            <div style="font-size:12px;color:#2980b9;">
+                <b>Action:</b> Verify with account owner immediately. If unauthorized — disable account and begin IR process.
+            </div>
+        </div>
+  </div>
+
+  <!-- ALL ALERTS TABLE -->
+  <div class="card">
+    <h2>All Alerts — Triage Results</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Timestamp</th>
+        <th>Severity</th>
+        <th>Rule</th>
+        <th>Source IP</th>
+        <th>Destination IP</th>
+        <th>Verdict</th>
+        <th>MITRE ATT&CK</th>
+        <th>Recommended Action</th>
+      </tr>
+      
+        <tr style="background:#fdecea;">
+            <td style="font-size:11px;color:#666;">ALT-007</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 09:45:33</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Critical</span></td>
+            <td style="font-size:12px;"><b>Malware Communication Detected</b></td>
+            <td style="font-size:11px;">192.168.1.30</td>
+            <td style="font-size:11px;">91.92.251.103</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">TRUE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1071" target="_blank" style="color:#c0392b;font-weight:bold;">T1071</a><br/><span style="font-size:10px;color:#666;">Command and Control</span></td>
+            <td style="font-size:11px;color:#2980b9;">Immediately isolate affected host from network. Block C2 IP at firewall. Begin malware analysis....</td>
+        </tr>
+        <tr style="background:#fdecea;">
+            <td style="font-size:11px;color:#666;">ALT-009</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 10:15:44</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Critical</span></td>
+            <td style="font-size:12px;"><b>Lateral Movement Detected</b></td>
+            <td style="font-size:11px;">192.168.1.15</td>
+            <td style="font-size:11px;">192.168.1.20</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">TRUE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1021" target="_blank" style="color:#c0392b;font-weight:bold;">T1021</a><br/><span style="font-size:10px;color:#666;">Lateral Movement</span></td>
+            <td style="font-size:11px;color:#2980b9;">Isolate all affected hosts. Reset all credentials. Begin full IR investigation....</td>
+        </tr>
+        <tr style="background:#fdecea;">
+            <td style="font-size:11px;color:#666;">ALT-014</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 12:30:00</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Critical</span></td>
+            <td style="font-size:12px;"><b>Malware Communication Detected</b></td>
+            <td style="font-size:11px;">192.168.1.80</td>
+            <td style="font-size:11px;">194.165.16.11</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">TRUE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1071" target="_blank" style="color:#c0392b;font-weight:bold;">T1071</a><br/><span style="font-size:10px;color:#666;">Command and Control</span></td>
+            <td style="font-size:11px;color:#2980b9;">Immediately isolate affected host from network. Block C2 IP at firewall. Begin malware analysis....</td>
+        </tr>
+        <tr style="background:#fdecea;">
+            <td style="font-size:11px;color:#666;">ALT-011</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 11:00:22</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">High</span></td>
+            <td style="font-size:12px;"><b>Suspicious PowerShell Execution</b></td>
+            <td style="font-size:11px;">192.168.1.40</td>
+            <td style="font-size:11px;">192.168.1.40</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">TRUE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1059/001" target="_blank" style="color:#c0392b;font-weight:bold;">T1059.001</a><br/><span style="font-size:10px;color:#666;">Execution</span></td>
+            <td style="font-size:11px;color:#2980b9;">Isolate host. Collect PowerShell logs. Analyze encoded command. Check for persistence mechanisms....</td>
+        </tr>
+        <tr style="background:#fdecea;">
+            <td style="font-size:11px;color:#666;">ALT-003</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 08:35:44</td>
+            <td><span style="background:#f39c12;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Medium</span></td>
+            <td style="font-size:12px;"><b>Admin Login Outside Business Hours</b></td>
+            <td style="font-size:11px;">203.0.113.42</td>
+            <td style="font-size:11px;">192.168.1.50</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">TRUE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1078" target="_blank" style="color:#c0392b;font-weight:bold;">T1078</a><br/><span style="font-size:10px;color:#666;">Defense Evasion</span></td>
+            <td style="font-size:11px;color:#2980b9;">Verify with account owner immediately. If unauthorized — disable account and begin IR process....</td>
+        </tr>
+        <tr style="background:#fef5ec;">
+            <td style="font-size:11px;color:#666;">ALT-006</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 09:30:17</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Critical</span></td>
+            <td style="font-size:12px;"><b>Privilege Escalation Attempt</b></td>
+            <td style="font-size:11px;">192.168.1.15</td>
+            <td style="font-size:11px;">192.168.1.10</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">NEEDS REVIEW</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1068" target="_blank" style="color:#e67e22;font-weight:bold;">T1068</a><br/><span style="font-size:10px;color:#666;">Privilege Escalation</span></td>
+            <td style="font-size:11px;color:#2980b9;">Assign to Tier 2 analyst for manual investigation. Gather additional context before escalating....</td>
+        </tr>
+        <tr style="background:#fef5ec;">
+            <td style="font-size:11px;color:#666;">ALT-013</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 12:00:00</td>
+            <td><span style="background:#c0392b;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Critical</span></td>
+            <td style="font-size:12px;"><b>Privilege Escalation Attempt</b></td>
+            <td style="font-size:11px;">192.168.1.75</td>
+            <td style="font-size:11px;">192.168.1.10</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">NEEDS REVIEW</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1068" target="_blank" style="color:#e67e22;font-weight:bold;">T1068</a><br/><span style="font-size:10px;color:#666;">Privilege Escalation</span></td>
+            <td style="font-size:11px;color:#2980b9;">Assign to Tier 2 analyst for manual investigation. Gather additional context before escalating....</td>
+        </tr>
+        <tr style="background:#fef5ec;">
+            <td style="font-size:11px;color:#666;">ALT-001</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 08:15:32</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">High</span></td>
+            <td style="font-size:12px;"><b>Brute Force Login Attempt</b></td>
+            <td style="font-size:11px;">185.220.101.45</td>
+            <td style="font-size:11px;">192.168.1.10</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">NEEDS REVIEW</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1110" target="_blank" style="color:#e67e22;font-weight:bold;">T1110</a><br/><span style="font-size:10px;color:#666;">Credential Access</span></td>
+            <td style="font-size:11px;color:#2980b9;">Assign to Tier 2 analyst for manual investigation. Gather additional context before escalating....</td>
+        </tr>
+        <tr style="background:#fef5ec;">
+            <td style="font-size:11px;color:#666;">ALT-004</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 09:05:22</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">High</span></td>
+            <td style="font-size:12px;"><b>Large Data Transfer Detected</b></td>
+            <td style="font-size:11px;">192.168.1.25</td>
+            <td style="font-size:11px;">45.33.32.156</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">NEEDS REVIEW</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1048" target="_blank" style="color:#e67e22;font-weight:bold;">T1048</a><br/><span style="font-size:10px;color:#666;">Exfiltration</span></td>
+            <td style="font-size:11px;color:#2980b9;">Assign to Tier 2 analyst for manual investigation. Gather additional context before escalating....</td>
+        </tr>
+        <tr style="background:#fef5ec;">
+            <td style="font-size:11px;color:#666;">ALT-002</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 08:22:11</td>
+            <td><span style="background:#f39c12;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Medium</span></td>
+            <td style="font-size:12px;"><b>Port Scan Detected</b></td>
+            <td style="font-size:11px;">10.0.0.5</td>
+            <td style="font-size:11px;">192.168.1.0/24</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">NEEDS REVIEW</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1046" target="_blank" style="color:#e67e22;font-weight:bold;">T1046</a><br/><span style="font-size:10px;color:#666;">Discovery</span></td>
+            <td style="font-size:11px;color:#2980b9;">Assign to Tier 2 analyst for manual investigation. Gather additional context before escalating....</td>
+        </tr>
+        <tr style="background:#eafaf1;">
+            <td style="font-size:11px;color:#666;">ALT-005</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 09:15:00</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">High</span></td>
+            <td style="font-size:12px;"><b>Brute Force Login Attempt</b></td>
+            <td style="font-size:11px;">192.168.1.1</td>
+            <td style="font-size:11px;">192.168.1.10</td>
+            <td><span style="background:#27ae60;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">FALSE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1110" target="_blank" style="color:#27ae60;font-weight:bold;">T1110</a><br/><span style="font-size:10px;color:#666;">Credential Access</span></td>
+            <td style="font-size:11px;color:#2980b9;">Dismiss alert — no action required. Consider tuning detection rule to reduce noise....</td>
+        </tr>
+        <tr style="background:#eafaf1;">
+            <td style="font-size:11px;color:#666;">ALT-012</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 11:30:00</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">High</span></td>
+            <td style="font-size:12px;"><b>Large Data Transfer Detected</b></td>
+            <td style="font-size:11px;">192.168.1.60</td>
+            <td style="font-size:11px;">8.8.8.8</td>
+            <td><span style="background:#27ae60;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">FALSE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1048" target="_blank" style="color:#27ae60;font-weight:bold;">T1048</a><br/><span style="font-size:10px;color:#666;">Exfiltration</span></td>
+            <td style="font-size:11px;color:#2980b9;">Dismiss alert — no action required. Consider tuning detection rule to reduce noise....</td>
+        </tr>
+        <tr style="background:#eafaf1;">
+            <td style="font-size:11px;color:#666;">ALT-015</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 13:00:00</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">High</span></td>
+            <td style="font-size:12px;"><b>Suspicious PowerShell Execution</b></td>
+            <td style="font-size:11px;">192.168.1.90</td>
+            <td style="font-size:11px;">192.168.1.90</td>
+            <td><span style="background:#27ae60;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">FALSE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1059/001" target="_blank" style="color:#27ae60;font-weight:bold;">T1059.001</a><br/><span style="font-size:10px;color:#666;">Execution</span></td>
+            <td style="font-size:11px;color:#2980b9;">Dismiss alert — no action required. Consider tuning detection rule to reduce noise....</td>
+        </tr>
+        <tr style="background:#eafaf1;">
+            <td style="font-size:11px;color:#666;">ALT-008</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 10:00:00</td>
+            <td><span style="background:#f39c12;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Medium</span></td>
+            <td style="font-size:12px;"><b>Admin Login Outside Business Hours</b></td>
+            <td style="font-size:11px;">192.168.1.100</td>
+            <td style="font-size:11px;">192.168.1.50</td>
+            <td><span style="background:#27ae60;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">FALSE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1078" target="_blank" style="color:#27ae60;font-weight:bold;">T1078</a><br/><span style="font-size:10px;color:#666;">Defense Evasion</span></td>
+            <td style="font-size:11px;color:#2980b9;">Dismiss alert — no action required. Consider tuning detection rule to reduce noise....</td>
+        </tr>
+        <tr style="background:#eafaf1;">
+            <td style="font-size:11px;color:#666;">ALT-010</td>
+            <td style="font-size:11px;color:#666;">2026-04-20 10:30:00</td>
+            <td><span style="background:#f39c12;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">Medium</span></td>
+            <td style="font-size:12px;"><b>Port Scan Detected</b></td>
+            <td style="font-size:11px;">192.168.1.200</td>
+            <td style="font-size:11px;">192.168.1.10</td>
+            <td><span style="background:#27ae60;color:white;padding:2px 8px;
+                border-radius:10px;font-size:11px;font-weight:bold;">FALSE POSITIVE</span></td>
+            <td><a href="https://attack.mitre.org/techniques/T1046" target="_blank" style="color:#27ae60;font-weight:bold;">T1046</a><br/><span style="font-size:10px;color:#666;">Discovery</span></td>
+            <td style="font-size:11px;color:#2980b9;">Dismiss alert — no action required. Consider tuning detection rule to reduce noise....</td>
+        </tr>
+    </table>
+  </div>
+
+  <!-- COVERAGE GAPS -->
+  <div class="card">
+    <h2>Detection Coverage Gap Analysis</h2>
+    <div class="warn">
+      WARNING: The following detection rules did not fire during this analysis period.
+      This may indicate blind spots in your detection coverage where attacks could go unnoticed.
+    </div>
+    <table>
+      <tr>
+        <th>Rule Name</th>
+        <th>MITRE ID</th>
+        <th>Tactic</th>
+        <th>Gap Analysis</th>
+      </tr>
+      
+        <tr style="background:#fef9e7;">
+            <td><b style="color:#e67e22;">Ransomware File Encryption</b></td>
+            <td style="color:#666;">N/A</td>
+            <td style="color:#666;">Unknown</td>
+            <td style="color:#c0392b;font-size:12px;">
+                No alerts fired during analysis period — possible blind spot in detection coverage
+            </td>
+        </tr>
+        <tr style="background:#fef9e7;">
+            <td><b style="color:#e67e22;">DNS Tunneling Detected</b></td>
+            <td style="color:#666;">N/A</td>
+            <td style="color:#666;">Unknown</td>
+            <td style="color:#c0392b;font-size:12px;">
+                No alerts fired during analysis period — possible blind spot in detection coverage
+            </td>
+        </tr>
+        <tr style="background:#fef9e7;">
+            <td><b style="color:#e67e22;">Insider Threat Behavior</b></td>
+            <td style="color:#666;">N/A</td>
+            <td style="color:#666;">Unknown</td>
+            <td style="color:#c0392b;font-size:12px;">
+                No alerts fired during analysis period — possible blind spot in detection coverage
+            </td>
+        </tr>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  SIEM Alert Triage Simulator &nbsp;|&nbsp;
+  Built with Python &nbsp;|&nbsp;
+  2026-04-20 14:17:55
+</div>
+
+</body>
+</html>
