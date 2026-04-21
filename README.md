@@ -225,8 +225,8 @@ no judgment calls needed during high-pressure incidents.
 
 ### Commercial Tool Comparison
 This tool replicates the core triage logic of commercial
-SOAR platforms used by real enterprise SOC teams:
-- Splunk SOAR — automated playbook execution and alert triage
+SIEM platforms used by real enterprise SOC teams:
+- Splunk — automated playbook execution and alert triage
 - Palo Alto XSOAR — enterprise security orchestration platform
 - IBM QRadar SOAR — integrated triage and response automation
 - Microsoft Sentinel — cloud-native SIEM with built-in SOAR
