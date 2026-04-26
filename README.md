@@ -93,7 +93,7 @@ No pip install required.
    TRIAGE COMPLETE
 =======================================================
 
-![SIEM Triage Output](Output%20Images/siem-triage%20terminal%20output.jpeg)
+![SIEM Output](Output%20Images/siem-triage%20terminal%20output.jpeg)
 
 ## Detection Rules Covered
 | Rule | MITRE ID | Tactic |
