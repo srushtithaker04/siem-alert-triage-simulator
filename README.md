@@ -66,9 +66,8 @@ No pip install required.
 
 ## Sample Terminal Output
 
-=======================================================
    SIEM ALERT TRIAGE SIMULATOR
-=======================================================
+
 [*] Loading alerts from alerts.json...
 [*] Total alerts loaded: 15
 
@@ -89,11 +88,10 @@ No pip install required.
 [+] HTML report saved to triage_report.html
 [+] Open triage_report.html in your browser to view it
 
-=======================================================
-   TRIAGE COMPLETE
-=======================================================
+ TRIAGE COMPLETE
 
-![SIEM Output]Output Images/siem-traige terminal output.jpeg
+
+![SIEM Output] 
 
 
 ## Detection Rules Covered
