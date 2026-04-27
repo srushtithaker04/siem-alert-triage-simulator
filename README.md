@@ -91,7 +91,7 @@ No pip install required.
  TRIAGE COMPLETE
 
 
-![SIEM Output] https://github.com/srushtithaker04/siem-alert-triage-simulator/blob/a3ac91b461f26dcdcde129ada9af1a9f95dc4582/Output%20Images/siem-traige%20terminal%20output.jpeg
+![SIEM Output](Output%20Images/siem-traige%20terminal%20output.jpeg)
 
 
 ## Detection Rules Covered
